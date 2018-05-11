@@ -2,6 +2,7 @@ use std::fmt;
 
 fn main() {
     cap2_2();
+    cap2_3();
 }
 
 // 2.2
@@ -39,4 +40,12 @@ fn cap2_2(){
     println!("{:?}", matrix);
     println!("{}", matrix);
     println!("{}", transpose(matrix));
+}
+
+// 2.3 array , slice
+fn cap2_3(){
+    let xs: [i32; 5] = [1,2,3,4,5];
+    let ys: [i32; 500] =[0; 500];
+    println!("xs[0] = {}", xs[0]);
+    println!("xs[1] = {}", xs[1]);
 }
