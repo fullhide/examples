@@ -22,15 +22,18 @@ async def sleeping(order, seconds, hook=None):
         hook(order)
     return order
 
-async def basic_async():
-    for s in Seconds:
-        r = await sleeping(*s)
-        print(f"{now()} {r} is finished")
-    return True
-
 def main_01_basic_async():
+    async def basic_async(label):
+        for s in Seconds:
+            r = await sleeping(*s)
+            print(f"{label}{now()} {r} is finished")
+        return True
+
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(basic_async())
+    #loop.run_until_complete(basic_async("A:"))
+    for s in "ABC":
+        asyncio.ensure_future(basic_async(f"{s}:"))
+    loop.run_forever()
 
 if __name__ == "__main__":
     main_01_basic_async()
