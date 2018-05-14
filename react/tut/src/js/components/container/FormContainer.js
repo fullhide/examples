@@ -1,36 +1,50 @@
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import Input from "../presentational/Input"
+import Output from "../presentational/Output"
+// import sleep from '../../util/sleep'
+
+function calc(expr) {
+  try {
+    return eval(expr)
+  } catch (e) {
+    return "e"
+  }
+}
+
 
 class FormContainer extends Component {
   constructor() {
     super();
     this.state = {
-      seo_title: ""
+      input_expr: "",
+      output_value: ""
     }
     this.handleChange = this.handleChange.bind(this)
-    console.log("constructor")
   }
 
   handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value })
-
-    console.log("event = " + event.target.value)
-    console.log("state = " + this.state.seo_title)
+    const in_value = event.target.value
+    this.setState({ [event.target.id]: in_value })
+    const out_value = `${calc(in_value)}`
+    this.setState({"output_value": out_value})
   }
 
   render() {
-    const { seo_title } = this.state
+    const { seo_title, output_value } = this.state
     return (
       <form id="article-form">
         <Input
-          text="SEO title"
-          label="seo_title"
+          text="Expression"
+          label="expr"
           type="text"
-          id="seo_title"
+          id="in-expr"
           value={seo_title}
           handleChange={this.handleChange}
         />
+
+        <Output text={output_value} id="seo-title-output" />
+
       </form>
     )
   }
@@ -43,5 +57,4 @@ const wrapper = document.getElementById("create-article-form")
 if (wrapper) {
   ReactDOM.render(<FormContainer />, wrapper)
 }
-
 

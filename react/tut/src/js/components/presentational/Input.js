@@ -19,7 +19,7 @@ Input.propTypes = {
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   handleChange: PropTypes.func.isRequired
 };
 
