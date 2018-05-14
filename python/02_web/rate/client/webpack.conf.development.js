@@ -6,14 +6,17 @@ const dist = path.resolve(__dirname, 'dist')
 
 export default {
   mode: 'development',
-  entry: src + '/index.jsx',
+
+  entry: [
+    src + '/index.jsx'
+  ],
 
   output: {
     path: dist,
     filename: 'bundle.js'
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   module: {
     rules: [
